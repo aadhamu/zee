@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Match</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #FFDAB9, #FFB6C1);
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            font-weight: 700;
+            color: #333;
+            padding: 10px 20px;
+            border: 2px solid #333;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        nav a:hover {
+            background-color: #333;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .book-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .book-item {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 250px;
+            text-align: center;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-item img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .book-details {
+            padding: 15px;
+        }
+
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #FF6F61;
+            margin-bottom: 10px;
+        }
+
+        .book-preview {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .download-btn {
+            text-decoration: none;
+            color: white;
+            background: #FF6F61;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #E55A4F;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+        }
+
+        .modal-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #FF6F61;
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .close-modal {
+            background: #FF6F61;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            background: #E55A4F;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 15px;
+            background: #FFDAB9;
+            text-align: center;
+            border-radius: 15px;
+            font-size: 1em;
+            font-weight: 700;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        @media (max-width: 768px) {
+            .book-item {
+                max-width: 90%;
+            }
+
+            .modal-content {
+                max-width: 90%;
+            }
+
+            header h1 {
+                font-size: 2.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Book Match</h1>
+        <nav>
+            <a href="index.html">Back to Home</a>
+        </nav>
+    </header>
+    <main>
+        <div class="book-list">
+            <!-- Book Items -->
+            <div class="book-item">
+                <img src="images/youhadmeathola.jpg" alt="You Had Me at Hola">
+                <div class="book-details">
+                    <div class="book-title">You Had Me at Hola</div>
+                    <div class="book-preview">A romantic comedy about finding love amidst a career meltdown.</div>
+                    <a href="books/youhadmeathola.epub" class="download-btn" download>Download Now</a>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="images/ourfault.webp" alt="Our Fault">
+                <div class="book-details">
+                    <div class="book-title">Our Fault</div>
+                    <div class="book-preview">A heartwarming and complicated tale of young love.</div>
+                    <a href="books/Our_Fault_-_Mercedes_Ron.epub" class="download-btn" download>Download Now</a>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="images/thekissquotient.jpg" alt="The Kiss Quotient">
+                <div class="book-details">
+                    <div class="book-title">The Kiss Quotient</div>
+                    <div class="book-preview">A quirky romance blending math and love in perfect harmony.</div>
+                    <a href="books/thekissquotient.epub" class="download-btn" download>Download Now</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>Just for You!</h2>
+            <p>All books are in EPUB format, perfect for your e-reader! The collection will be updated regularly, so check back for more amazing reads!</p>
+            <button class="close-modal" onclick="closeModal()">Okay</button>
+        </div>
+    </div>
+    <footer>
+        <p>"Dive into the world of books and find your next favorite story!"</p>
+    </footer>
+    <script>
+        const modal = document.getElementById('modal');
+        const downloadButtons = document.querySelectorAll('.download-btn');
+
+        downloadButtons.forEach(button => {
+            button.addEventListener('click', event => {
+                event.preventDefault();
+                modal.style.display = 'flex';
+                const downloadLink = button.href;
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    window.location.href = downloadLink;
+                }, 2000);
+            });
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

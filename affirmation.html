@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Inspirations for Zainab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #FFDAB9, #FFB6C1);
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.3em;
+            color: #555;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            font-weight: 700;
+            color: #333;
+            padding: 10px 20px;
+            border: 2px solid #333;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        nav a:hover {
+            background-color: #333;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .quote, .compliment, .thought {
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            font-size: 1.5em;
+            border: 2px solid #FF6F61;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            font-family: 'Playfair Display', serif;
+            background: #FFF;
+            color: #FF6F61;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .quote:hover, .compliment:hover, .thought:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: 700;
+            color: #fff;
+            background-color: #FF6F61;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 20px 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #E55A4F;
+            transform: scale(1.1);
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px auto;
+        }
+
+        .gallery img {
+            margin: 10px;
+            border-radius: 10px;
+            width: 100px;
+            height: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.2);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 15px;
+            background: #FFDAB9;
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        footer p {
+            margin: 5px;
+            font-size: 1em;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            .gallery img {
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Daily Inspirations for Zainab</h1>
+        <p>Hey Zainab, here’s something to make your day brighter and lighter. 🌼</p>
+        <nav>
+            <a href="index.html">Back to Home</a>
+        </nav>
+    </header>
+    <main>
+        <div class="quote" id="quote">"Zainab, you have a presence that makes everything around you feel warm and calm."</div>
+        <button onclick="generateQuote()">Generate New Quote</button>
+
+        <div class="compliment" id="compliment">"Your smile is a little bit of sunshine that lights up every room, Zainab."</div>
+        <button onclick="generateCompliment()">Get a Compliment</button>
+
+        <h2>Today’s Thought</h2>
+        <div class="thought" id="thought">"Zainab, remember that even small steps every day can lead to incredible journeys."</div>
+
+        <h2>A Little Gallery for You</h2>
+        <div class="gallery">
+            <img src="images/flower.webp"A flower for Zainab">
+            <img src="images/sunrise.webp"A sunrise for Zainab">
+            <img src="images/heart.avif"A heart for Zainab">
+        </div>
+
+        <button onclick="revealMessage()">Reveal a Secret</button>
+        <div id="secretMessage" style="display: none;">Zainab, I hope this page makes you smile as much as you make me smile. 😊</div>
+    </main>
+    <footer>
+        <p>With care and kindness,</p>
+        <p><strong>Adamu</strong></p>
+    </footer>
+    <script>
+        const quotes = [
+            "Zainab, you have a presence that makes everything around you feel warm and calm.",
+            "Your kindness is like a light that makes everyone’s day better, Zainab.",
+            "You are someone who brings out the best in others, Zainab.",
+            "Zainab, the world is better with you in it.",
+            "Your positive energy inspires everyone around you, Zainab."
+        ];
+
+        const compliments = [
+            "Your smile is a little bit of sunshine that lights up every room, Zainab.",
+            "You make even the simplest moments feel special, Zainab.",
+            "Your laugh is contagious, Zainab—it’s impossible not to smile when I hear it.",
+            "Zainab, your thoughtfulness always makes others feel cared for.",
+            "You have a way of bringing peace to any situation, Zainab."
+        ];
+
+        const thoughts = [
+            "Zainab, remember that even small steps every day can lead to incredible journeys.",
+            "You have everything it takes to achieve your dreams, Zainab—never doubt that.",
+            "Every new day is an opportunity to grow, Zainab. You’re doing amazing.",
+            "Zainab, take a moment to appreciate how far you’ve come—you’re incredible.",
+            "The world is brighter when you believe in yourself, Zainab."
+        ];
+
+        function generateQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quote').textContent = quotes[randomIndex];
+        }
+
+        function generateCompliment() {
+            const randomIndex = Math.floor(Math.random() * compliments.length);
+            document.getElementById('compliment').textContent = compliments[randomIndex];
+        }
+
+        function revealMessage() {
+            document.getElementById('secretMessage').style.display = 'block';
+        }
+
+        function setTodayThought() {
+            const todayIndex = new Date().getDay() % thoughts.length;
+            document.getElementById('thought').textContent = thoughts[todayIndex];
+        }
+
+        setTodayThought(); // Set the daily thought on page load
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romance Journal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #FFDAB9, #FFB6C1);
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            color: #333;
+            margin-bottom: 10px;
+            animation: fadeIn 2s;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #333;
+            padding: 10px 20px;
+            border: 2px solid #333;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        nav a:hover {
+            background-color: #333;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        textarea {
+            width: 90%;
+            max-width: 800px;
+            height: 300px;
+            padding: 15px;
+            font-size: 1.1em;
+            border: 2px solid #FF6F61;
+            border-radius: 15px;
+            outline: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            resize: none;
+            margin-top: 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        textarea::placeholder {
+            font-style: italic;
+            color: #999;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: 700;
+            color: #fff;
+            background-color: #FF6F61;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 20px 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #E55A4F;
+            transform: scale(1.1);
+        }
+
+        .notes-section {
+            margin-top: 40px;
+            text-align: left;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .notes-section h2 {
+            font-family: 'Playfair Display', serif;
+            color: #FF6F61;
+            font-size: 1.8em;
+        }
+
+        .note {
+            background: #FFF;
+            border: 2px solid #FFB6C1;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .note:hover {
+            background: #FFEEF2;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 15px;
+            background: #FFDAB9;
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+
+            textarea {
+                height: 250px;
+            }
+
+            .notes-section h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Romance Journal</h1>
+        <nav>
+            <a href="index.html">Back to Home</a>
+        </nav>
+    </header>
+    <main>
+        <textarea id="journal" placeholder="Write your thoughts here..."></textarea>
+        <br>
+        <button onclick="saveNote()">Save Note</button>
+        <button onclick="clearAllNotes()">Clear All Notes</button>
+        <section class="notes-section" id="notes-section">
+            <h2>Your Saved Notes</h2>
+        </section>
+    </main>
+    <footer>
+        <p>"A journal filled with your thoughts is a treasure chest of emotions."</p>
+    </footer>
+    <script>
+        const journal = document.getElementById('journal');
+        const notesSection = document.getElementById('notes-section');
+
+        // Load saved notes on page load
+        window.onload = function () {
+            displaySavedNotes();
+        };
+
+        // Save note to local storage
+        function saveNote() {
+            const note = journal.value.trim();
+            if (note === '') {
+                alert('Please write something before saving.');
+                return;
+            }
+
+            const notes = JSON.parse(localStorage.getItem('romanceJournal')) || [];
+            notes.push(note);
+            localStorage.setItem('romanceJournal', JSON.stringify(notes));
+            journal.value = ''; // Clear textarea
+            displaySavedNotes();
+            alert('Your note has been saved!');
+        }
+
+        // Display saved notes
+        function displaySavedNotes() {
+            notesSection.innerHTML = '<h2>Your Saved Notes</h2>';
+            const notes = JSON.parse(localStorage.getItem('romanceJournal')) || [];
+            if (notes.length === 0) {
+                notesSection.innerHTML += '<p>No notes saved yet. Start by writing one above!</p>';
+                return;
+            }
+
+            notes.forEach((note, index) => {
+                const noteDiv = document.createElement('div');
+                noteDiv.className = 'note';
+                noteDiv.textContent = `${index + 1}. ${note}`;
+                notesSection.appendChild(noteDiv);
+            });
+        }
+
+        // Clear all notes from local storage and UI
+        function clearAllNotes() {
+            const confirmation = confirm('Are you sure you want to clear all your notes? This action cannot be undone.');
+            if (confirmation) {
+                localStorage.removeItem('romanceJournal');
+                displaySavedNotes();
+                alert('All your notes have been cleared.');
+            }
+        }
+    </script>
+</body>
+</html>
