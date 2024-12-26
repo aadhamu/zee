@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Adamu & Zainab's Love Quest</title>
     <style>
         body {
@@ -64,7 +65,8 @@
             font-size: 18px;
         }
 
-        .score-display, .timer {
+        .score-display,
+        .timer {
             position: absolute;
             font-size: 18px;
             color: #FF1493;
@@ -90,6 +92,7 @@
         }
 
         .control-btn {
+            touch-action: manipulation;
             width: 60px;
             height: 60px;
             background: #FF69B4;
@@ -104,6 +107,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="screen onboarding" id="onboarding">
         <h1>Welcome to Adamu & Zainab's Love Quest</h1>
@@ -305,6 +309,23 @@
             loadMap(0);
             startGame();
         }
+
+        // Touch event handlers for better performance on mobile
+        controls.left.addEventListener('touchstart', () => { adamu.x -= adamu.speed; });
+        controls.up.addEventListener('touchstart', () => { adamu.y -= adamu.speed; });
+        controls.right.addEventListener('touchstart', () => { adamu.x += adamu.speed; });
+        controls.down.addEventListener('touchstart', () => { adamu.y += adamu.speed; });
+
+        // Prevent zoom when tapping controls
+        function preventZoom(event) {
+            event.preventDefault();
+        }
+
+        document.querySelectorAll('.control-btn').forEach(btn => {
+            btn.addEventListener('touchend', preventZoom, { passive: false });
+        });
+
     </script>
 </body>
+
 </html>
