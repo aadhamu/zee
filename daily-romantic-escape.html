@@ -83,6 +83,7 @@
         .interactive-box p {
             font-size: 1.2em;
             color: #444;
+            animation: fadeIn 0.8s ease-in-out;
         }
 
         .interactive-box button {
@@ -192,6 +193,12 @@
                 <li>Cook your favorite Nigerian dish and savor the moment.</li>
             </ul>
         </div>
+
+        <div class="interactive-box">
+            <h2>Daily Quote</h2>
+            <p id="quote">"Click below to get inspired for the day!"</p>
+            <button onclick="generateQuote()">Get Inspired</button>
+        </div>
     </main>
     <footer>
         <p>With care and kindness,</p>
@@ -207,16 +214,33 @@
                 "You’re in a flower field, taking in the sweet scent and the peaceful view."
             ];
             const randomScenario = scenarios[Math.floor(Math.random() * scenarios.length)];
-            document.getElementById('scenario').textContent = randomScenario;
+            const scenarioElement = document.getElementById('scenario');
+            scenarioElement.textContent = randomScenario;
+            scenarioElement.style.animation = "fadeIn 1s ease-in-out";
         }
 
         function toggleActive(element) {
             const activeClass = 'active';
-            if (element.classList.contains(activeClass)) {
-                element.classList.remove(activeClass);
-            } else {
-                element.classList.add(activeClass);
-            }
+            element.classList.toggle(activeClass);
+        }
+
+        function resetAffirmations() {
+            const affirmations = document.querySelectorAll('#affirmation-list li');
+            affirmations.forEach(li => li.classList.remove('active'));
+        }
+
+        function generateQuote() {
+            const quotes = [
+                "“The best way to predict the future is to create it.” – Peter Drucker",
+                "“Your only limit is your mind.”",
+                "“Do something today that your future self will thank you for.”",
+                "“Believe you can and you’re halfway there.” – Theodore Roosevelt",
+                "“Dream it. Believe it. Build it.”"
+            ];
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            const quoteElement = document.getElementById('quote');
+            quoteElement.textContent = randomQuote;
+            quoteElement.style.animation = "fadeIn 1s ease-in-out";
         }
     </script>
 </body>

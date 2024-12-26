@@ -59,6 +59,85 @@
             transform: scale(1.1);
         }
 
+        section#coming-soon {
+            text-align: center;
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 800px;
+            background: linear-gradient(135deg, #FFB6C1, #FFDAB9);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s;
+        }
+
+        section#coming-soon h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: #FF6F61;
+            margin-bottom: 10px;
+        }
+
+        section#coming-soon p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        section#coming-soon img {
+            width: 150px;
+            height: 150px;
+            margin-top: 20px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        /* Modal Popup */
+        #coming-soon-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        #coming-soon-modal .modal-content {
+            background: linear-gradient(135deg, #FFB6C1, #FFDAB9);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease;
+        }
+
+        #coming-soon-modal h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: #FF6F61;
+        }
+
+        #coming-soon-modal p {
+            font-size: 1.2em;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        #coming-soon-modal button {
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #fff;
+            background: #FF6F61;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -67,6 +146,15 @@
         @keyframes slideIn {
             from { transform: translateY(-30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
         }
 
         @media (max-width: 768px) {
@@ -98,5 +186,22 @@
             <a href="romance-game.html">Play Love Quest</a>
         </nav>
     </header>
+
+    
+    <!-- Modal Popup -->
+    <div id="coming-soon-modal">
+        <div class="modal-content">
+            <h2>Coming Soon...</h2>
+            <p>We’re working on something truly special for you, Zainab. Stay tuned for magical updates! 🌹</p>
+            <button onclick="closeModal()">Explore Now</button>
+        </div>
+    </div>
+
+    <script>
+        function closeModal() {
+            const modal = document.getElementById('coming-soon-modal');
+            modal.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
