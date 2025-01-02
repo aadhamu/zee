@@ -116,12 +116,19 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             font-size: 1em;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .note:hover {
             background: #FFEEF2;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
             transform: scale(1.02);
+        }
+
+        .note span {
+            display: block;
+            font-size: 0.9em;
+            color: #999;
         }
 
         footer {
@@ -160,21 +167,23 @@
 <body>
     <header>
         <h1>Romance Journal</h1>
+        <p>Start the year with love and heartfelt reflections. 💖</p>
         <nav>
             <a href="index.html">Back to Home</a>
         </nav>
     </header>
     <main>
-        <textarea id="journal" placeholder="Write your thoughts here..."></textarea>
+        <textarea id="journal" placeholder="What are your dreams and goals for this year?"></textarea>
         <br>
         <button onclick="saveNote()">Save Note</button>
         <button onclick="clearAllNotes()">Clear All Notes</button>
+        <button onclick="generatePrompt()">Need Inspiration?</button>
         <section class="notes-section" id="notes-section">
             <h2>Your Saved Notes</h2>
         </section>
     </main>
     <footer>
-        <p>"A journal filled with your thoughts is a treasure chest of emotions."</p>
+        <p>"This year, let your journal be your sanctuary of dreams and memories." 🌟</p>
     </footer>
     <script>
         const journal = document.getElementById('journal');
@@ -194,7 +203,8 @@
             }
 
             const notes = JSON.parse(localStorage.getItem('romanceJournal')) || [];
-            notes.push(note);
+            const timestamp = new Date().toLocaleString();
+            notes.push({ text: note, date: timestamp });
             localStorage.setItem('romanceJournal', JSON.stringify(notes));
             journal.value = ''; // Clear textarea
             displaySavedNotes();
@@ -213,7 +223,7 @@
             notes.forEach((note, index) => {
                 const noteDiv = document.createElement('div');
                 noteDiv.className = 'note';
-                noteDiv.textContent = `${index + 1}. ${note}`;
+                noteDiv.innerHTML = `${index + 1}. ${note.text}<br><span>Saved on: ${note.date}</span>`;
                 notesSection.appendChild(noteDiv);
             });
         }
@@ -226,6 +236,19 @@
                 displaySavedNotes();
                 alert('All your notes have been cleared.');
             }
+        }
+
+        // Generate daily prompt
+        function generatePrompt() {
+            const prompts = [
+                "What are you most grateful for today?",
+                "Describe your perfect romantic evening.",
+                "What are three goals you'd like to achieve this year?",
+                "Write about a memory that makes you smile.",
+                "How do you envision your dream life in five years?"
+            ];
+            const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+            journal.placeholder = randomPrompt;
         }
     </script>
 </body>

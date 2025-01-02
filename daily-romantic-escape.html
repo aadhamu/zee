@@ -162,7 +162,7 @@
 <body>
     <header>
         <h1>Zainab's Daily Escape</h1>
-        <p>Hi Zainab! Here's a little escape from your busy day. 🌼</p>
+        <p>Happy New Year, Zainab! Here’s to a year filled with love, joy, and success. 🎉</p>
         <nav>
             <a href="index.html">Back to Home</a>
         </nav>
@@ -170,33 +170,33 @@
     <main>
         <div class="interactive-box">
             <h2>Today's Scenario</h2>
-            <p id="scenario">Click below to discover a peaceful scenario for today!</p>
+            <p id="scenario">Click below to discover a new, peaceful scenario for this amazing year!</p>
             <button onclick="generateScenario()">Discover</button>
         </div>
 
         <div class="interactive-box interactive-list">
             <h2>Nursing Affirmations</h2>
             <ul id="affirmation-list">
-                <li onclick="toggleActive(this)">"I am capable of learning and growing into an incredible nurse."</li>
-                <li onclick="toggleActive(this)">"Every day, I am closer to achieving my dream of making a difference."</li>
-                <li onclick="toggleActive(this)">"I am strong, resilient, and determined to succeed."</li>
-                <li onclick="toggleActive(this)">"Caring for others is my gift, and I embrace it fully."</li>
+                <li onclick="toggleActive(this)">"I am growing stronger and wiser every day."</li>
+                <li onclick="toggleActive(this)">"This year, I will achieve greatness through my determination."</li>
+                <li onclick="toggleActive(this)">"I am capable of facing any challenge with grace and courage."</li>
+                <li onclick="toggleActive(this)">"Every step I take brings me closer to my dreams."</li>
             </ul>
         </div>
 
         <div class="interactive-box interactive-list">
             <h2>Simple Joys for Today</h2>
             <ul>
-                <li>Enjoy a cup of tea and take a moment to breathe.</li>
-                <li>Write down three things you’re grateful for today.</li>
-                <li>Take a walk and notice the beauty around you.</li>
-                <li>Cook your favorite Nigerian dish and savor the moment.</li>
+                <li>Write down your top three goals for this year.</li>
+                <li>Take a moment to enjoy the sunrise or sunset.</li>
+                <li>Celebrate small wins to kickstart the year positively.</li>
+                <li>Share a smile or kind word with someone today.</li>
             </ul>
         </div>
 
         <div class="interactive-box">
             <h2>Daily Quote</h2>
-            <p id="quote">"Click below to get inspired for the day!"</p>
+            <p id="quote">"Click below for an inspiring quote to guide your year!"</p>
             <button onclick="generateQuote()">Get Inspired</button>
         </div>
     </main>
@@ -207,11 +207,11 @@
     <script>
         function generateScenario() {
             const scenarios = [
-                "You’re sitting under a mango tree, feeling the breeze as you read your favorite book.",
-                "You’re at a quiet café, sipping tea and planning your dreams.",
-                "You’re watching the sunset, feeling grateful for all the good in your life.",
-                "You’re surrounded by friends, laughing and sharing stories under the stars.",
-                "You’re in a flower field, taking in the sweet scent and the peaceful view."
+                "You’re walking along a quiet beach, waves gently kissing the shore as you plan your dreams for the year.",
+                "You’re journaling under the stars, reflecting on your hopes and aspirations for the months ahead.",
+                "You’re sipping tea by a window, watching the rain and feeling at peace with the present moment.",
+                "You’re surrounded by loved ones, celebrating the start of a new and promising chapter.",
+                "You’re hiking to a hilltop, feeling inspired as you take in the breathtaking view."
             ];
             const randomScenario = scenarios[Math.floor(Math.random() * scenarios.length)];
             const scenarioElement = document.getElementById('scenario');
@@ -224,18 +224,13 @@
             element.classList.toggle(activeClass);
         }
 
-        function resetAffirmations() {
-            const affirmations = document.querySelectorAll('#affirmation-list li');
-            affirmations.forEach(li => li.classList.remove('active'));
-        }
-
         function generateQuote() {
             const quotes = [
-                "“The best way to predict the future is to create it.” – Peter Drucker",
-                "“Your only limit is your mind.”",
-                "“Do something today that your future self will thank you for.”",
-                "“Believe you can and you’re halfway there.” – Theodore Roosevelt",
-                "“Dream it. Believe it. Build it.”"
+                "“The future belongs to those who believe in the beauty of their dreams.” – Eleanor Roosevelt",
+                "“Every moment is a fresh beginning.” – T.S. Eliot",
+                "“This is your year to shine and thrive!”",
+                "“Success is the sum of small efforts repeated day in and day out.”",
+                "“Start where you are. Use what you have. Do what you can.” – Arthur Ashe"
             ];
             const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
             const quoteElement = document.getElementById('quote');
